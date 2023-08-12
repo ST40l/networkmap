@@ -1,5 +1,4 @@
 import networkx as nx
-import matplotlib.pyplot as plt
 
 # Boş bir yönlendirilmemiş graf oluşturalım
 G = nx.Graph()
@@ -28,15 +27,6 @@ baglantilar = [
 for sehir1, sehir2, mesafe in baglantilar:
     G.add_edge(sehir1, sehir2, mesafe=mesafe)
 
-# Ağ haritasını çizelim
-pos = nx.spring_layout(G, seed=42)  # Rastgele düzlem yerleşimi için tohum belirtelim
-edge_labels = {(sehir1, sehir2): f"{mesafe} km" for sehir1, sehir2, mesafe in baglantilar}
-
-nx.draw_networkx_nodes(G, pos, node_size=800, node_color='skyblue')
-nx.draw_networkx_edges(G, pos, edge_color='gray')
-nx.draw_networkx_labels(G, pos, font_size=10)
-nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=8)
-
-plt.title("Türkiye Şehirleri Ağ Haritası")
-plt.axis('off')  # Eksenleri gösterme
-plt.show()
+# Bağlantı mesafelerini yazdıralım
+for sehir1, sehir2, mesafe in baglantilar:
+    print(f"{sehir1} ile {sehir2} arası mesafe: {mesafe} km")
